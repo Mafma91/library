@@ -13,7 +13,7 @@ $this->load->helper('url');
 
 </head>
 <body>
-	<div><h1>Search Book</h1></div>
+	<div><h1>Search Book Results</h1></div>
 <form action="<?php echo base_url(); ?>index.php/library/search_books" method="post">
 	Book Name: <input type="text" name="bookname"><br>
 	<input type="submit" value="Search">

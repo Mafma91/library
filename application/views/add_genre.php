@@ -29,7 +29,7 @@ $this->load->helper('url');
 <?php
 	if(isset($result))
 	{
-		echo " Genre added successfully";
+		echo " Genre added successfully ";
 
  }
 	else {

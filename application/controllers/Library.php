@@ -87,6 +87,8 @@ class library extends CI_Controller {
 		$data['authorslist'] = $result;
 		$result = $this->library_model->getgenre();
 		$data['genrelist'] = $result;
+		$result = $this->library_model->gettypes();
+		$data['typeslist'] = $result;
 		$this->load->view('add_books',$data);
 	}
 
@@ -122,14 +124,45 @@ class library extends CI_Controller {
 			$this->load->view('add_author');
 		}
 	}
+	public function delete_book($id)
+	{
+		$result = $this->library_model->deletebook($id);
+		redirect('library/showallbooks');
+
+	}
+
+	public function editbook($id)
+	{
+	$result = $this->library_model->getgenre();
+	$data = array();
+	$data['genrelist'] = $result;
+	$result = $this->library_model->getauthors();
+	$data['authorslist'] = $result;
+	$result = $this->library_model->gettypes();
+	$data['typeslist'] = $result;
+	$result = $this->library_model->getbookdetailsbyid($id);
+	$data['book'] = array_pop($result);
+	$data['bookgenres'] = $this->library_model->getbookgenres($id);
+	$data['bookauthor'] = $this->library_model->getbookauthors($id);
+	$data['booktypes'] = $this->library_model->getbooktypes($id);
+
+	$this->load->view('editbooks',$data);
+ }
+
+ public function updatebook()
+ {
+ 	if($this->input->post("ISBN")|| $this->input->post("bookid") || $this->input->post("bookname") || $this->input->post("numberofpages") ||
+	$this->input->post("publishingdate")|| $this->input->post("type"))
+ 	{
+ 		$result = $this->library_model->updatebooks();
+ 		$data = array();
+ 		$data['result'] = $result;
+ 		$this->load->view('update_book_results',$data);
+ 	}
+ }
 
 
-public function delete_book($id)
-{
-	$result = $this->library_model->deletebook($id);
-	redirect('Library/showallbooks');
 
-}
 
 }
 ?>

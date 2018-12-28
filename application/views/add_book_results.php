@@ -11,10 +11,13 @@ $this->load->helper('url');
 	<title>Library</title>
 
 
+
 </head>
 <body>
 	<div><h1>Add Book</h1></div>
 	<h3>Book Added Successfully</h3>
+	<a href="<?php echo base_url();?>index.php/library/mainpage"><input type="button" value="Back to mainpage"></a><br>
+
 
 
 

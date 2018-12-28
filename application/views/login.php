@@ -6,7 +6,7 @@ $this->load->helper('url');
 
 <html lang="en">
 <head>
-	
+
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style.css">	<meta charset="utf-8">
 	<title>login</title>
 

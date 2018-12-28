@@ -15,27 +15,27 @@ $this->load->helper('url');
      function add_book()
      {
 
-     if( document.forms["addbook"]["ISBN"].value == "" )
+     if( document.forms["add_book"]["ISBN"].value == "" )
      {
         alert( "Please provide ISBN for this book!" );
         return false;
      }
-     if( document.forms["addbook"]["bookname"].value == "" )
+     if( document.forms["add_book"]["bookname"].value == "" )
      {
         alert( "Please provide book name!" );
         return false;
      }
-     if( document.forms["addbook"]["numberofpages"].value == "" )
+     if( document.forms["add_book"]["numberofpages"].value == "" )
      {
         alert( "Please provide number of pages for this book!" );
         return false;
      }
-     if( document.forms["addbook"]["genre"].value < 0 )
+     if( document.forms["add_book"]["genre"].value < 0 )
      {
         alert( "Please provide genre for this book!" );
         return false;
      }
-     if( document.forms["addbook"]["type"].value < 0 )
+     if( document.forms["add_book"]["type"].value < 0 )
      {
         alert( "Please provide type for this book!" );
         return false;
@@ -49,23 +49,23 @@ $this->load->helper('url');
 <body>
 <div><h1>Add Book</h1></div>
 
-<form name="add_book" action="<?php echo $this->config->base_url(); ?>index.php/library/add_book_result"  method="post">
-ISBN: <input type="text" name="ISBN"><br>
+<form name="add_book" action="<?php echo $this->config->base_url(); ?>index.php/library/add_book_result" onsubmit="return validateForm()"  method="post">
 Book Name: <input type="text" name="bookname"><br>
 Number of pages: <input type="text" name="numberofpages"><br>
 Publishing Date: <input type= "date" name="publishingdate"><br>
- Edition Number: <input type= "text" name="editionnum"><br>
+ Edition Number: <input type= "text" name="editionnumber"><br>
  Print Date: <input type= "date" name="printdate"><br>
+ ISBN: <input type= "text" name="ISBN"><br>
 
 
-type: <input type="text" name="type"><br>
+
 <?php
 
 		 echo '<br><br> Authors <br>';
 
-		 foreach ($authorslist as $authors)
+		 foreach ($authorslist as $author)
 		 {
-			 echo '<input type="checkbox" name="authors[]" value="'.$authors->authorid.'"> '.$authors->authorname.'<br>';
+			 echo '<input type="checkbox" name="authors[]" value="'.$author->authorid.'"> '.$author->authorname.'<br>';
 		 }
 
 		 echo '<br><br> Genres <br>';
@@ -74,7 +74,11 @@ type: <input type="text" name="type"><br>
 		 {
 		 	echo '<input type="checkbox" name="genre[]" value="'.$genre->genreid.'"> '.$genre->genrename.'<br>';
 		 }
-
+echo '<br><br> Types <br>';
+		 foreach ($typeslist as $type)
+		 {
+			echo '<input type="checkbox" name="type[]" value="'.$type->typeid.'"> '.$type->typename.'<br>';
+		 }
 
 echo'<input type="submit" value="Add"></form>';
 
